@@ -4,31 +4,31 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "peleador_ataque")
 public class peleador {
-    private String nombre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String nombre;
     private int puntosdevida;
     private int energia;
     private float defensabase;
-    private arma armaequipada;
-    private List inventario;
-    private List habilidades;
+    @ManyToMany
+    @JoinTable(name = "peleador_ataques", joinColumns = @JoinColumn(name = "peleador_id"), inverseJoinColumns = @JoinColumn(name = "ataque_id"))
+    private List<ataque> ataques;
+    @ManyToMany
+    @JoinTable(name = "peleador_armas", joinColumns = @JoinColumn(name = "peleador_id"), inverseJoinColumns = @JoinColumn(name = "arma_id"))
+    private List<arma> armas;
 
-    public peleador(String nombre, int id, int puntosdevida, int energia, float defensabase, arma armaequipada,
-            List inventario, List habilidades) {
+    public peleador(String nombre, int id, int puntosdevida, int energia, float defensabase, List<ataque> ataques) {
         this.nombre = nombre;
         this.id = id;
         this.puntosdevida = puntosdevida;
         this.energia = energia;
         this.defensabase = defensabase;
-        this.armaequipada = armaequipada;
-        this.inventario = inventario;
-        this.habilidades = habilidades;
-
+        this.ataques = ataques;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getid() {
         return id;
     }
@@ -70,28 +70,12 @@ public class peleador {
         this.defensabase = defensabase;
     }
 
-    public arma getArmaequipada() {
-        return armaequipada;
+    public List<ataque> getAtaques() {
+        return ataques;
     }
 
-    public void setArmaequipada(arma armaequipada) {
-        this.armaequipada = armaequipada;
-    }
-
-    public List getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(List inventario) {
-        this.inventario = inventario;
-    }
-
-    public List getHabilidades() {
-        return habilidades;
-    }
-
-    public void setHabilidades(List habilidades) {
-        this.habilidades = habilidades;
+    public void setAtaques(List<ataque> ataques) {
+        this.ataques = ataques;
     }
 
 }

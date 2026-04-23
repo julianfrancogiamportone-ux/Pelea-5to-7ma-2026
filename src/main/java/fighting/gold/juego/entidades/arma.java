@@ -5,10 +5,14 @@ import java.util.List;
 
 @Entity
 public class arma {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
     private int bonificadordanio;
     private float peso;
+    @ManyToMany(mappedBy = "armas")
+    private List<peleador> peleadores;
 
     public arma(int id, String nombre, int bonificadordanio, float peso) {
         this.id = id;
@@ -16,9 +20,6 @@ public class arma {
         this.bonificadordanio = bonificadordanio;
         this.peso = peso;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     public int getId() {
         return id;
