@@ -4,11 +4,16 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "ataque")
 public class ataque {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
     int costoenergia;
     int daniobase;
+    @ManyToMany(mappedBy = "ataques")
+    private List<peleador> peleadores;
 
     public ataque(int id, String nombre, int costoenergia, int daniobase) {
         this.id = id;
@@ -17,8 +22,6 @@ public class ataque {
         this.daniobase = daniobase;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -51,4 +54,7 @@ public class ataque {
         this.daniobase = daniobase;
     }
 
+    public void setPeleadores(List<peleador> peleadores) {
+        this.peleadores = peleadores;
+    }
 }
