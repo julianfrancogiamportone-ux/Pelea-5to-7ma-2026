@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ataque")
-public class ataque {
+public class Ataque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -13,9 +13,9 @@ public class ataque {
     int costoenergia;
     int daniobase;
     @ManyToMany(mappedBy = "ataques")
-    private List<peleador> peleadores;
+    private List<Peleador> peleadores;
 
-    public ataque(int id, String nombre, int costoenergia, int daniobase) {
+    public Ataque(int id, String nombre, int costoenergia, int daniobase) {
         this.id = id;
         this.nombre = nombre;
         this.costoenergia = costoenergia;
@@ -54,7 +54,9 @@ public class ataque {
         this.daniobase = daniobase;
     }
 
-    public void setPeleadores(List<peleador> peleadores) {
-        this.peleadores = peleadores;
+    public void imprimirataque() {
+        System.out.println("Ataque: " + nombre);
+        System.out.println("Costo de energía: " + costoenergia);
+        System.out.println("Daño base: " + daniobase);
     }
 }
