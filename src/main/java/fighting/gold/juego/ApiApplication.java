@@ -9,7 +9,6 @@ import fighting.gold.juego.entidades.Peleador;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
 public class ApiApplication {
@@ -23,8 +22,8 @@ public class ApiApplication {
 		Arma espada = new Arma(1, "EXCALIBUR", 20, 10);
 		Arma escudo = new Arma(2, "RHO AIAS", 10, 20);
 		Arma lanza = new Arma(3, "LANZA DE LONGINUS", 30, 15);
-		Peleador goku = new Peleador("Goku", 1, 100, 100, 0.2f, 80, null);
-		Peleador vegeta = new Peleador("Vegeta", 2, 100, 100, 0.3f, 80, null);
+		Peleador goku = new Peleador("Goku", 1, 100, 100, 0.2f, 50, new ArrayList<>());
+		Peleador vegeta = new Peleador("Vegeta", 2, 100, 100, 0.3f, 80, new ArrayList<>());
 		System.out.println("¡Bienvenidos a FIGHTING GOLD(PRE ALPHA)!");
 		System.out.println("Peleadores disponibles:");
 		System.out.println("1. Goku");
@@ -109,5 +108,52 @@ public class ApiApplication {
 					+ " pero no causa daño.");
 		}
 	}
-	
+
+	public static void curacion(Peleador peleador, int cantidad, int energia) {
+		peleador.setpuntosdevida(peleador.getpuntosdevida() + cantidad + energia);
+		if (peleador.getpuntosdevida() > 200) {
+			peleador.setEnergia(energia);
+
+		} else {
+			if (peleador.getpuntosdevida() < 200)
+				peleador.setEnergia(100);
+			System.out.println(peleador.getnombre() + " recupera toda su energía.");
+			peleador.setpuntosdevida(500);
+			System.out.println(peleador.getnombre() + " se cura completamente y pierde toda su energía.");
+			peleador.setpuntosdevida(200);
+		}
+		System.out.println(peleador.getnombre() + " se cura " + cantidad + " puntos de vida.");
+
+		for (Ataque ataque : peleador.getAtaques()) {
+			if (peleador.getEnergia() > ataque.getCostoenergia())
+				System.out.println(peleador.getnombre() + " puede usar el ataque " + ataque.getNombre() + ".");
+		}
+
+	}
+
+	public static void atacar(Peleador atacante, Peleador defensor, Ataque ataque) {
+		if (ataque.getDaniobase() > defensor.getDefensabase()) {
+			float danioTotal = ataque.getDaniobase() + atacante.getBonificadordanio() - defensor.getDefensabase();
+			defensor.setpuntosdevida(defensor.getpuntosdevida() - danioTotal);
+			System.out.println(atacante.getnombre() + " golpea a " + defensor.getnombre() + " con " + ataque.getNombre()
+					+ " causando " + danioTotal + " de daño.");
+		} else {
+			System.out.println(atacante.getnombre() + " golpea a " + defensor.getnombre() + " con " + ataque.getNombre()
+					+ " pero no causa daño.");
+		}
+		if (defensor.getpuntosdevida() <= 0) {
+			System.out.println(defensor.getnombre() + " ha sido derrotado por " + atacante.getnombre() + "!");
+		} else {
+			System.out.println(
+					defensor.getnombre() + " tiene " + defensor.getpuntosdevida() + " puntos de vida restantes.");
+			while (defensor.getpuntosdevida() > 0) {
+				golpear(atacante, defensor, ataque);
+				if (defensor.getpuntosdevida() <= 0) {
+					System.out.println(defensor.getnombre() + " ha sido derrotado por " + atacante.getnombre() + "!");
+					return;
+
+				}
+			}
+		}
+	}
 }
