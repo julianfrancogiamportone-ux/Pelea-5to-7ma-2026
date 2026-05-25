@@ -5,28 +5,32 @@ import java.util.List;
 
 @Entity
 @Table(name = "peleador_ataque")
-public class peleador {
+public class Peleador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
-    private int puntosdevida;
+    private float puntosdevida;
     private int energia;
     private float defensabase;
+    private float bonificadordanio;
     @ManyToMany
     @JoinTable(name = "peleador_ataques", joinColumns = @JoinColumn(name = "peleador_id"), inverseJoinColumns = @JoinColumn(name = "ataque_id"))
-    private List<ataque> ataques;
+    private List<Ataque> ataques;
     @ManyToMany
     @JoinTable(name = "peleador_armas", joinColumns = @JoinColumn(name = "peleador_id"), inverseJoinColumns = @JoinColumn(name = "arma_id"))
-    private List<arma> armas;
+    private List<Arma> armas;
 
-    public peleador(String nombre, int id, int puntosdevida, int energia, float defensabase, List<ataque> ataques) {
+    public Peleador(String nombre, int id, int puntosdevida, int energia, float defensabase, float bonificadordanio,
+            List<Ataque> Ataques) {
         this.nombre = nombre;
         this.id = id;
         this.puntosdevida = puntosdevida;
         this.energia = energia;
         this.defensabase = defensabase;
-        this.ataques = ataques;
+        this.bonificadordanio = bonificadordanio;
+        this.ataques = Ataques;
+
     }
 
     public int getid() {
@@ -45,19 +49,19 @@ public class peleador {
         this.nombre = nombre;
     }
 
-    public int getpuntosdevida() {
+    public float getpuntosdevida() {
         return puntosdevida;
     }
 
-    public void setpuntosdevida(int puntosdevida) {
+    public void setpuntosdevida(float puntosdevida) {
         this.puntosdevida = puntosdevida;
     }
 
-    public int energia() {
+    public int getEnergia() {
         return energia;
     }
 
-    public void energia(int energia) {
+    public void setEnergia(int energia) {
         this.energia = energia;
 
     }
@@ -70,12 +74,42 @@ public class peleador {
         this.defensabase = defensabase;
     }
 
-    public List<ataque> getAtaques() {
+    public List<Ataque> getAtaques() {
         return ataques;
     }
 
-    public void setAtaques(List<ataque> ataques) {
+    public void setAtaques(List<Ataque> ataques) {
         this.ataques = ataques;
     }
 
+    public List<Arma> getArmas() {
+        return armas;
+    }
+
+    public void setArmas(List<Arma> armas) {
+        this.armas = armas;
+    }
+
+    public float getBonificadordanio() {
+        return bonificadordanio;
+    }
+
+    public void setBonificadordanio(float bonificadordanio) {
+        this.bonificadordanio = bonificadordanio;
+    }
+
+    public void imprimir() {
+        System.out.println("Peleador: " + nombre);
+        System.out.println("Puntos de Vida: " + puntosdevida);
+        System.out.println("Energía: " + energia);
+        System.out.println("Defensa Base: " + defensabase);
+        System.out.println("Armas:");
+        for (Arma arma : armas) {
+            System.out.println(" - " + arma.getNombre());
+        }
+        System.out.println("Ataques:");
+        for (Ataque ataque : ataques) {
+            System.out.println(" - " + ataque.getNombre());
+        }
+    }
 }
