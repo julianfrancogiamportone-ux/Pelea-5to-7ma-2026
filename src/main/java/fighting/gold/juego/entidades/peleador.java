@@ -8,7 +8,7 @@ import java.util.List;
 public class Peleador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String nombre;
     private float puntosdevida;
     private int energia;
@@ -21,7 +21,7 @@ public class Peleador {
     @JoinTable(name = "peleador_armas", joinColumns = @JoinColumn(name = "peleador_id"), inverseJoinColumns = @JoinColumn(name = "arma_id"))
     private List<Arma> armas;
 
-    public Peleador(String nombre, int id, int puntosdevida, int energia, float defensabase, float bonificadordanio,
+    public Peleador(String nombre, long id, float puntosdevida, int energia, float defensabase, float bonificadordanio,
             List<Ataque> Ataques) {
         this.nombre = nombre;
         this.id = id;
@@ -33,11 +33,11 @@ public class Peleador {
 
     }
 
-    public int getid() {
+    public long getid() {
         return id;
     }
 
-    public void setid(int id) {
+    public void setid(long id) {
         this.id = id;
     }
 
