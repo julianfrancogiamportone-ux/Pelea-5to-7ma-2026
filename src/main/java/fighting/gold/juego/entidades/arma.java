@@ -7,25 +7,25 @@ import java.util.List;
 public class Arma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String nombre;
     private int bonificadordanio;
     private float peso;
     @ManyToMany(mappedBy = "armas")
     private List<Peleador> peleadores;
 
-    public Arma(int id, String nombre, int bonificadordanio, float peso) {
+    public Arma(long id, String nombre, int bonificadordanio, float peso) {
         this.id = id;
         this.nombre = nombre;
         this.bonificadordanio = bonificadordanio;
         this.peso = peso;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -7,27 +7,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import fighting.gold.juego.entidades.Peleador;
+import fighting.gold.juego.entidades.Arma;
+import fighting.gold.juego.iservice.ArmaIservice;
 import fighting.gold.juego.iservice.PeleadorIservice;
 
 @RestController
-@RequestMapping("/peleadores")
-public class PeleadorController {
+@RequestMapping("/armas")
+public class ArmaController {
     @Autowired
-    private PeleadorIservice pIservice;
+    private ArmaIservice aIservice;
 
     @GetMapping
-    public List<Peleador> findAllPeleadores() {
-        return pIservice.findAllPeleadores();
+    public List<Arma> findAllArmas() {
+        return aIservice.findAllArmas();
     }
 
     @PostMapping
-    public Peleador savePeleador(@RequestBody Peleador peleador) {
-        return pIservice.savePeleador(peleador);
-    }
-
-    public List<Peleador> getAllPeleadores() {
-        return pIservice.findAllPeleadores();
+    public Arma saveArma(@RequestBody Arma arma) {
+        return aIservice.saveArma(arma);
     }
 
 }
