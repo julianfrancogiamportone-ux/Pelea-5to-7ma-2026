@@ -4,11 +4,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import fighting.gold.juego.entidades.Arma;
+import fighting.gold.juego.iservice.ArmaIservice;
 import fighting.gold.juego.repository.ArmaRepostory;
 
 @Service
-
-public class ArmaService {
+public class ArmaService implements ArmaIservice {
     @Autowired
     private ArmaRepostory ArmaRepostory;
 

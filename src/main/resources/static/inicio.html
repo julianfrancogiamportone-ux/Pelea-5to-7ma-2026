@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Selección de Personaje - Estilo Arcade</title>
+  <style>
+    /* Estilos base y fondo oscuro */
+    body {
+        font-family: 'Impact', 'Arial Black', sans-serif;
+        background-image: url('images/image background programacion.jpg');
+        background: radial-gradient(circle at center, #2a2a35 0%, #101014 100%);
+        color: #fff;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        color: #f1c40f;
+        text-shadow: 2px 2px 0px #e74c3c, 4px 4px 0px #000;
+        margin-bottom: 40px;
+        letter-spacing: 2px;
+    }
+
+    /* Contenedor principal de la pantalla de selección */
+    #select-screen {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 1000px;
+        gap: 30px;
+    }
+
+    /* Estilo de los jugadores (Lados izquierdo y derecho) */
+    .player-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+    }
+
+    .player-panel h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    /* Colores específicos para J1 y J2 */
+    .p1-title { color: #3498db; }
+    .p2-title { color: #e74c3c; }
+
+    /* Imagen grande del luchador seleccionado */
+    .large-portrait {
+        width: 250px;
+        height: 350px;
+        background-color: #1a1a1a;
+        border: 4px solid #fff;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .p1-portrait { border-color: #3498db; box-shadow: 0 0 20px #3498db; }
+    .p2-portrait { border-color: #e74c3c; box-shadow: 0 0 20px #e74c3c; }
+
+    .character-name {
+        margin-top: 15px;
+        font-size: 28px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    /* Panel central con la cuadrícula de personajes */
+    #roster {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #555;
+    }
+
+    /* Caritas pequeñas de los luchadores */
+    .roster-slot {
+        width: 80px;
+        height: 80px;
+        background-color: #333;
+        border: 3px solid #7f8c8d;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s;
+        object-fit: cover;
+    }
+
+    /* Efecto al pasar el mouse por encima (simula el cursor de selección) */
+    .roster-slot:hover {
+        transform: scale(1.15);
+        border-color: #f1c40f;
+        box-shadow: 0 0 15px #f1c40f;
+        z-index: 10;
+    }
+
+    /* Botón de Pelea */
+    #fightButton {
+        margin-top: 50px;
+        padding: 15px 40px;
+        font-size: 28px;
+        font-family: 'Impact', sans-serif;
+        text-transform: uppercase;
+        border: 3px solid #fff;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #e74c3c, #c0392b);
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 6px 0 #900000, 0 0 15px rgba(231, 76, 60, 0.5);
+    }
+
+    #fightButton:hover {
+        transform: translateY(2px);
+        box-shadow: 0 4px 0 #900000, 0 0 25px rgba(231, 76, 60, 0.8);
+    }
+
+    #fightButton:active {
+        transform: translateY(6px);
+        box-shadow: 0 0 0 #900000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CHOOSE YOUR FIGHTER</h1>
+
+  <div id="select-screen">
+    
+    <!-- Jugador 1 (Izquierda) -->
+    <div class="player-panel">
+      <h2 class="p1-title">PLAYER 1</h2>
+      <!-- Reemplaza src con una imagen vertical grande -->
+      <img src="placeholder_p1_large.png" alt="Jugador 1" class="large-portrait p1-portrait">
+      <div class="character-name">Goku</div>
+    </div>
+
+    <!-- Cuadrícula Central (Roster) -->
+    <div id="roster">
+        <!-- Reemplaza los src con las caritas pequeñas de tus personajes -->
+        <img src="cara1.png" class="roster-slot" alt="Char 1">
+        <img src="cara2.png" class="roster-slot" alt="Char 2">
+        <img src="cara3.png" class="roster-slot" alt="Char 3">
+        <img src="cara4.png" class="roster-slot" alt="Char 4">
+        <img src="cara5.png" class="roster-slot" alt="Char 5">
+        <img src="cara6.png" class="roster-slot" alt="Char 6">
+        <img src="cara7.png" class="roster-slot" alt="Char 7">
+        <img src="cara8.png" class="roster-slot" alt="Char 8">
+        <img src="cara9.png" class="roster-slot" alt="Char 9">
+    </div>
+
+    <!-- Jugador 2 (Derecha) -->
+    <div class="player-panel">
+      <h2 class="p2-title">PLAYER 2</h2>
+      <!-- Reemplaza src con una imagen vertical grande -->
+      <img src="placeholder_p2_large.png" alt="Jugador 2" class="large-portrait p2-portrait">
+      <div class="character-name">Naruto</div>
+    </div>
+
+  </div>
+
+  <button id="fightButton">¡FIGHT!</button>
+
+</body>
+</html>
