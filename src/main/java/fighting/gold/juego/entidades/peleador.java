@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "peleador_ataque")
+@Table(name = "peleador")
 public class Peleador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +14,18 @@ public class Peleador {
     private int energia;
     private float defensabase;
     private float bonificadordanio;
+    private String url_imagen;
     @ManyToMany
     @JoinTable(name = "peleador_ataques", joinColumns = @JoinColumn(name = "peleador_id"), inverseJoinColumns = @JoinColumn(name = "ataque_id"))
     private List<Ataque> ataques;
     @ManyToMany
     @JoinTable(name = "peleador_armas", joinColumns = @JoinColumn(name = "peleador_id"), inverseJoinColumns = @JoinColumn(name = "arma_id"))
     private List<Arma> armas;
+    
+    public Peleador() {
+    }
 
-    public Peleador(String nombre, long id, float puntosdevida, int energia, float defensabase, float bonificadordanio,
+    public Peleador(String nombre, long id, float puntosdevida, int energia, float defensabase, float bonificadordanio, String url_imagen,
             List<Ataque> Ataques) {
         this.nombre = nombre;
         this.id = id;
@@ -29,6 +33,7 @@ public class Peleador {
         this.energia = energia;
         this.defensabase = defensabase;
         this.bonificadordanio = bonificadordanio;
+        this.url_imagen = url_imagen;
         this.ataques = Ataques;
 
     }
@@ -97,12 +102,19 @@ public class Peleador {
     public void setBonificadordanio(float bonificadordanio) {
         this.bonificadordanio = bonificadordanio;
     }
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+    public void setUrl_imagen(String url_imagen) {
+        this.url_imagen = url_imagen;
+    }
 
     public void imprimir() {
         System.out.println("Peleador: " + nombre);
         System.out.println("Puntos de Vida: " + puntosdevida);
         System.out.println("Energía: " + energia);
         System.out.println("Defensa Base: " + defensabase);
+        System.out.println("imagen: " + url_imagen);
         System.out.println("Armas:");
         for (Arma arma : armas) {
             System.out.println(" - " + arma.getNombre());

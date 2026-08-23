@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "API",
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}

@@ -2,7 +2,6 @@ package fighting.gold.juego.entidades;
 
 import jakarta.persistence.*;
 import java.util.List;
-
 @Entity
 public class Arma {
     @Id
@@ -13,6 +12,9 @@ public class Arma {
     private float peso;
     @ManyToMany(mappedBy = "armas")
     private List<Peleador> peleadores;
+    
+    public Arma() {
+    }
 
     public Arma(long id, String nombre, int bonificadordanio, float peso) {
         this.id = id;

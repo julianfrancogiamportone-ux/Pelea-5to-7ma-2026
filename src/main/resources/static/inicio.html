@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Selección de Personaje - Estilo Arcade</title>
+  <style>
+    /* Estilos base y fondo oscuro */
+    body {
+        font-family: 'Impact', 'Arial Black', sans-serif;
+        background-image: url('images/image background programacion.jpg');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        color: #f1c40f;
+        text-shadow: 2px 2px 0px #e74c3c, 4px 4px 0px #000;
+        margin-bottom: 40px;
+        letter-spacing: 2px;
+    }
+
+    /* Contenedor principal de la pantalla de selección */
+    #select-screen {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 1000px;
+        gap: 30px;
+    }
+
+    /* Estilo de los jugadores (Lados izquierdo y derecho) */
+    .player-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+    }
+
+    .player-panel h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    /* Colores específicos para J1 y J2 */
+    .p1-title { color: #3498db; }
+    .p2-title { color: #e74c3c; }
+
+    /* Imagen grande del luchador seleccionado */
+    .large-portrait {
+        width: 250px;
+        height: 350px;
+        background-color: #1a1a1a;
+        border: 4px solid #fff;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .p1-portrait { border-color: #3498db; box-shadow: 0 0 20px #3498db; }
+    .p2-portrait { border-color: #e74c3c; box-shadow: 0 0 20px #e74c3c; }
+
+    .character-name {
+        margin-top: 15px;
+        font-size: 28px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    /* Panel central con la cuadrícula de personajes */
+    #roster {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #555;
+    }
+
+    /* Caritas pequeñas de los luchadores */
+    .roster-slot {
+        width: 80px;
+        height: 80px;
+        background-color: #333;
+        border: 3px solid #7f8c8d;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s;
+        object-fit: cover;
+    }
+
+    /* Efecto al pasar el mouse por encima (simula el cursor de selección) */
+    .roster-slot:hover {
+        transform: scale(1.15);
+        border-color: #f1c40f;
+        box-shadow: 0 0 15px #f1c40f;
+        z-index: 10;
+    }
+
+    /* Botón de Pelea */
+    #fightButton {
+        margin-top: 50px;
+        padding: 15px 40px;
+        font-size: 28px;
+        font-family: 'Impact', sans-serif;
+        text-transform: uppercase;
+        border: 3px solid #fff;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #e74c3c, #c0392b);
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 6px 0 #900000, 0 0 15px rgba(231, 76, 60, 0.5);
+    }
+
+    #fightButton:hover {
+        transform: translateY(2px);
+        box-shadow: 0 4px 0 #900000, 0 0 25px rgba(231, 76, 60, 0.8);
+    }
+
+    #fightButton:active {
+        transform: translateY(6px);
+        box-shadow: 0 0 0 #900000;
+    }
+    #result {
+    margin-top: 30px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #f1c40f;
+    text-shadow: 2px 2px 0px #000;
+    animation: punch 1s infinite alternate;
+}
+@keyframes punch {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.hidden {
+    display: none !important;
+}
+  </style>
+</head>
+<body>
+
+  <h1>CHOOSE YOUR FIGHTER</h1>
+
+  <div id="select-screen">
+    
+    <!-- Jugador 1 (Izquierda) -->
+    <div class="player-panel">
+      <h2 class="p1-title">PLAYER 1</h2>
+      <img src="https://via.placeholder.com/250x350/1a1a1a/FFFFFF?text=Jugador+1" alt="Jugador 1" class="large-portrait p1-portrait">
+      <div class="character-name">SELECCIONA</div>
+    </div>
+
+    <!-- Cuadrícula Central (Roster) - Queda vacía para llenarla con JS -->
+    <div id="roster">
+    </div>
+
+    <!-- Jugador 2 (Derecha) -->
+    <div class="player-panel">
+      <h2 class="p2-title">PLAYER 2</h2>
+      <img src="https://via.placeholder.com/250x350/1a1a1a/FFFFFF?text=Jugador+2" alt="Jugador 2" class="large-portrait p2-portrait">
+      <div class="character-name">SELECCIONA</div>
+    </div>
+
+  </div>
+
+  <button id="fightButton">¡FIGHT!</button>
+<!-- ... resto de tu HTML arriba ... -->
+
+  <!-- Aquí aparecerá el resultado de la pelea -->
+  <div id="result" class="hidden"></div>
+
+  <!-- Enlace a tu nuevo archivo JavaScript separado -->
+  <script src="js/inicio.js"></script>
+</body>
+</html>
