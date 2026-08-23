@@ -8,7 +8,8 @@
     body {
         font-family: 'Impact', 'Arial Black', sans-serif;
         background-image: url('images/image background programacion.jpg');
-        background: radial-gradient(circle at center, #2a2a35 0%, #101014 100%);
+        background-size: cover;
+        background-position: center;
         color: #fff;
         text-align: center;
         margin: 0;
@@ -133,6 +134,22 @@
         transform: translateY(6px);
         box-shadow: 0 0 0 #900000;
     }
+    #result {
+    margin-top: 30px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #f1c40f;
+    text-shadow: 2px 2px 0px #000;
+    animation: punch 1s infinite alternate;
+}
+@keyframes punch {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.hidden {
+    display: none !important;
+}
   </style>
 </head>
 <body>
@@ -144,36 +161,30 @@
     <!-- Jugador 1 (Izquierda) -->
     <div class="player-panel">
       <h2 class="p1-title">PLAYER 1</h2>
-      <!-- Reemplaza src con una imagen vertical grande -->
-      <img src="placeholder_p1_large.png" alt="Jugador 1" class="large-portrait p1-portrait">
-      <div class="character-name">Goku</div>
+      <img src="https://via.placeholder.com/250x350/1a1a1a/FFFFFF?text=Jugador+1" alt="Jugador 1" class="large-portrait p1-portrait">
+      <div class="character-name">SELECCIONA</div>
     </div>
 
-    <!-- Cuadrícula Central (Roster) -->
+    <!-- Cuadrícula Central (Roster) - Queda vacía para llenarla con JS -->
     <div id="roster">
-        <!-- Reemplaza los src con las caritas pequeñas de tus personajes -->
-        <img src="cara1.png" class="roster-slot" alt="Char 1">
-        <img src="cara2.png" class="roster-slot" alt="Char 2">
-        <img src="cara3.png" class="roster-slot" alt="Char 3">
-        <img src="cara4.png" class="roster-slot" alt="Char 4">
-        <img src="cara5.png" class="roster-slot" alt="Char 5">
-        <img src="cara6.png" class="roster-slot" alt="Char 6">
-        <img src="cara7.png" class="roster-slot" alt="Char 7">
-        <img src="cara8.png" class="roster-slot" alt="Char 8">
-        <img src="cara9.png" class="roster-slot" alt="Char 9">
     </div>
 
     <!-- Jugador 2 (Derecha) -->
     <div class="player-panel">
       <h2 class="p2-title">PLAYER 2</h2>
-      <!-- Reemplaza src con una imagen vertical grande -->
-      <img src="placeholder_p2_large.png" alt="Jugador 2" class="large-portrait p2-portrait">
-      <div class="character-name">Naruto</div>
+      <img src="https://via.placeholder.com/250x350/1a1a1a/FFFFFF?text=Jugador+2" alt="Jugador 2" class="large-portrait p2-portrait">
+      <div class="character-name">SELECCIONA</div>
     </div>
 
   </div>
 
   <button id="fightButton">¡FIGHT!</button>
+<!-- ... resto de tu HTML arriba ... -->
 
+  <!-- Aquí aparecerá el resultado de la pelea -->
+  <div id="result" class="hidden"></div>
+
+  <!-- Enlace a tu nuevo archivo JavaScript separado -->
+  <script src="js/inicio.js"></script>
 </body>
 </html>

@@ -14,6 +14,9 @@ public class Ataque {
     int daniobase;
     @ManyToMany(mappedBy = "ataques")
     private List<Peleador> peleadores;
+    
+    public Ataque() {
+    }
 
     public Ataque(int id, String nombre, int costoenergia, int daniobase) {
         this.id = id;
